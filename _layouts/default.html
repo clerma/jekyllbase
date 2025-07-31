@@ -1,38 +1,79 @@
-<!DOCTYPE html>
-<html lang="{{ site.lang }}">
+<!doctype html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
 <head>
-<meta charset="utf-8" />
-<link rel="icon" type="image/x-icon" href="{{site.favicon}}" title="{{site.location}} Photo Booth Favicon">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" name="viewport">
-<meta name="robots" content="all" />
-<link href="{% if page.url == '/' %}{{site.url}}{% else %}{{site.url}}{{page.url}}{% endif %}" rel="canonical"/>
-<meta property="og:url" content="{% if page.url == '/' %}{{site.url}}{% else %}{{site.url}}{{page.url}}{% endif %}">
-<!-- Schema other -->
-{% capture seo %}{% seo %}<meta property="og:image:width" content="1500"/>
-<meta property="og:image:height" content="1000"/>
-<meta itemprop="name" content="{{site.name}}"/>
-<meta itemprop="url" content="{% if page.url == '/' %}{{site.url}}{% else %}{{site.url}}{{page.url}}{% endif %}"/>
-<meta itemprop="description" content="{{page.description}}"/>
-<meta itemprop="thumbnailUrl" content="{{page.image}}"/>
-<link rel="image_src" href="{{page.image}}" />
-<meta itemprop="image" content="{{page.image}}"/>
-<meta name="keywords" content="{{page.keywords}}">
-{% for item in site.social.links %}
-<meta property="og:see_also" content="{{item}}" />{% endfor %}
-
-<meta name="msvalidate.01" content="84731997131DC6D5C4CE682AF20C5C74" />
-{% endcapture %}{{seo | replace: "Jekyll" , "" | remove: "<!-- End Ohh Snap SEO tag -->"}}<!-- End Ohh Snap SEO tag -->
-<!-- Styles -->
 {% include head.html %}
 </head>
-<body>
+<body class="{% if page.url == '/' %}{% else %}overflow-hidden{% endif %}">
+  {% include gallerymodal.html %}
+    <!-- NAVBAR -->
+   {% include nav.html %}
+   <!-- Hero -->
+   {% if page.banner %}
+      {% if page.banner.video %}
+      <section class="bg-cover jarallax hero mt-11" data-jarallax data-speed=".8" data-video-src="{{page.banner.video}}?autoplay=0">
+        <div class="bg-dark-50 pb-md-11 pb-12 pt-12 h-100">
+          <div class="container h-100 py-10">
+         <div class="d-flex h-100 text-center align-items-center">
+           <div class="w-100 text-white">
+             {% if page.banner.preheading %}
+                <!-- Preheading -->
+                <h6 class="text-uppercase mb-5 d-none d-md-block">
+                {{page.banner.preheading}}
+                </h6>
+              {% endif %}
+             <h1 class="display-3 mb-4">{{page.banner.title}}</h1>
+            <p class="fs-lg">{{page.banner.subtext}}</p>
+             {% if page.banner.cta_link %}
+                <!-- Button -->
+                <a class="btn btn-primary" href="{{page.banner.cta_link}}">
+                  {{page.banner.cta_text}}
+                </a>
+              {% else %}
+              {% endif %}
+           </div>
+         </div>
+       </div>
+        </div>
+       </section>
+      {% else %}
+      <section data-jarallax data-speed=".8" class="bg-cover jarallax" style="background-image: url({{page.banner.image}});">
+         <div class="pt-13 pb-8 bg-dark-50 h-100">
+         <div class="container-lg my-10">
+           <div class="row justify-content-center">
+           <div class="col-md-10 col-lg-8 text-center text-white">
+           {% if page.banner.preheading %}
+             <!-- Preheading -->
+             <h6 class="text-uppercase mb-5">
+             {{page.banner.preheading}}
+             </h6>
+           {% endif %}
+             <!-- Heading -->
+             <h1 class="display-3 mb-4">
+            {{page.banner.title}}
+             </h1>
+             <!-- Text -->
+             <p class="fs-lg">
+             {{page.banner.subtext}}
+             </p>
 
-	{% include nav.html %}
-
-		{{ content }}
-
-	{% include footer.html %}
-	{% include scripts.html %}
-</body>
+             {% if page.banner.cta_link %}
+               <!-- Button -->
+               <a class="btn btn-primary" href="{{page.banner.cta_link}}">
+                 {{page.banner.cta_text}}
+               </a>
+             {% else %}
+             {% endif %}
+           </div>
+           </div>
+         </div>
+         </div>
+       </section>
+      {% endif %}
+   {% endif %}
+    {{ content }}
+    <!-- FOOTER -->
+    {% include footer.html %}
+    <!-- JAVASCRIPT -->
+    {% include scripts.html %}
+  </body>
 </html>

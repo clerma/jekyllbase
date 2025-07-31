@@ -1,4 +1,10 @@
-User-Agent: *
-Disallow:
-
-Sitemap: https://ohhsnapbooth.com/sitemap.xml
+---
+layout: null
+sitemap: true
+---
+User-agent: *
+Sitemap: {{ site.url }}/sitemap.xml
+Disallow: /search/
+Disallow: /success/
+Disallow: /tags/
+Disallow: /categories/
