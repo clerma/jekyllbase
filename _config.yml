@@ -1,9 +1,9 @@
 ---
 timezone: America/Chicago
 baseurl: ""
-url:
+url: doitgreener.org
 include: ['_pages', '_data','_vendors']
-name:
+name: Do It Greener
 description:
 author:
 relative_permalinks: false
