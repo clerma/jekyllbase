@@ -1,0 +1,32 @@
+annual_partners:
+  - name: "MSG"          # “Annual Partners”
+    logo: "https://static.wixstatic.com/media/e012fc_9b79bcf4a46a47c5bd7a0b1e71c63a6e~mv2.png"  # msg+logo+hor+site.png
+    url: ""
+
+sponsors:
+  - name: "BJF"          # “Sponsors”
+    logo: "https://static.wixstatic.com/media/e012fc_c0a3f5d9ecfa4cd8b4e6c869c5a4d9e4~mv2.png"  # BJF_logo.png
+    url: ""
+  - name: "Dr. Gillian Redlich (Schneider)"
+    logo: ""
+    url: ""
+  - name: "Cup A Coco International"
+    logo: ""
+    url: ""
+
+supporters:
+  - name: "FBT Online"
+    logo: "https://static.wixstatic.com/media/e012fc_2a598b8baad14d10baffd34092b59e21~mv2.png"  # logo-fbtonline.png
+    url: ""
+  - name: "AMB.Systems"
+    logo: ""
+    url: "https://www.amb.systems"
+  - name: "Allen & Jewell Celestine"
+    logo: ""
+    url: ""
+
+members_participants:
+  - name: "Lynn Reed"
+  - name: "Adrienne Celestine"
+  - name: "Debra Crowe, MD"
+  - name: "Dr. Kelly Robinson"

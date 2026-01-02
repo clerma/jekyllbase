@@ -2,5 +2,7 @@
   url: /
 - name: About
   url: /about
+- name: Get Involved
+  url: /get-involved
 - name: Contact
   url: /contact

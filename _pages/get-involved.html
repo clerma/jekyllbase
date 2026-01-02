@@ -1,0 +1,175 @@
+---
+title:
+description: >-
+keywords: >-
+image:
+banner:
+  image:
+  video:
+  preheading:
+  title:
+  subtext:
+layout: default
+permalink: /get-involved
+---
+<section class="container py-4 py-sm-5 my-md-2 my-lg-3 my-xl-4 my-xxl-5">
+
+  <!-- Item: Our Work & You -->
+  <div class="row align-items-center py-4 py-xl-5 my-2">
+    <div class="col-md-6 offset-xl-1 order-md-2 pb-2 mb-4 mb-md-0">
+      <img class="rounded-5" src="/assets/img/get-involved/6aff877a0a87484987cdea5ea99b628b.avif" alt="Volunteers">
+      <!-- Volunteers image from page. -->
+    </div>
+    <div class="col-md-6 col-xl-5 order-md-1">
+      <div class="pe-md-4 pe-xl-0">
+        <h2 class="h1 pb-2 pb-lg-3">Our Work &amp; You</h2>
+        <p class="pb-2 pb-lg-0 mb-4 mb-lg-5">
+          Be A Part of Our Mission — Get started with Do It Greener Foundation by making your idea a reality, or by helping others bring their dreams to life. We love meeting individuals who share our mission and values. Interested in sharing your ideas with us? Call us today and see how you can get involved.
+        </p>
+        <!-- Text taken from the Get Involved page intro. :contentReference[oaicite:2]{index=2} -->
+        <div class="row row-cols-2">
+          <div class="col">
+            <div class="d-table bg-secondary rounded-1 p-2 mb-3">
+              <i class="fa-light fa-lightbulb fa-xl"></i>
+            </div>
+            <h3 class="h5 mb-2">Share an Idea</h3>
+            <p class="fs-sm mb-0">Partner with us to launch a new project that serves our community.</p>
+          </div>
+          <div class="col">
+            <div class="d-table bg-secondary rounded-1 p-2 mb-3">
+              <i class="fa-sharp fa-light fa-handshake-angle fa-xl"></i>
+            </div>
+            <h3 class="h5 mb-2">Volunteer / Support</h3>
+            <p class="fs-sm mb-0">Help existing efforts through volunteering, donations, or sponsorship.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="bg-success container-fluid py-4 py-sm-5">
+  <!-- Item: Our Donors -->
+  <div class="row align-items-center py-4 py-xl-5 my-2">
+
+    <div class="col-md-12 text-center">
+      <div class="ps-md-4 pe-xl-0">
+        <h2 class="h1 pb-2 pb-lg-3">Our Donors</h2>
+        <p class="pb-2 pb-lg-0 mb-4 mb-lg-5">We’re grateful for every Annual Partner, Sponsor, Supporter, and the many Members &amp; Participants who fuel our work.</p>
+
+        <div class="row row-cols-2">
+          <div class="col">
+            <h3 class="h5 mb-2">Annual Partners</h3>
+            <ul class="fs-sm mb-0 list-unstyled">
+              {% for d in site.data.donors.annual_partners %}
+                <li class="mb-1">{{ d.name }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="col">
+            <h3 class="h5 mb-2">Sponsors</h3>
+            <ul class="fs-sm mb-0 list-unstyled">
+              {% for d in site.data.donors.sponsors %}
+                <li class="mb-1">{{ d.name }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="col mt-4">
+            <h3 class="h5 mb-2">Supporters</h3>
+            <ul class="fs-sm mb-0 list-unstyled">
+              {% for d in site.data.donors.supporters %}
+                <li class="mb-1">
+                  {% if d.url %}<a href="{{ d.url }}" target="_blank" rel="noopener">{{ d.name }}</a>{% else %}{{ d.name }}{% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="col mt-4">
+            <h3 class="h5 mb-2">Members &amp; Participants</h3>
+            <ul class="fs-sm mb-0 list-unstyled">
+              {% for p in site.data.donors.members_participants %}
+                <li class="mb-1">{{ p.name }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Donor categories taken from the page. :contentReference[oaicite:3]{index=3} -->
+      </div>
+    </div>
+  </div>
+</section>
+<section class="container-fluid bg-danger py-4 py-sm-5 text-center">
+  <!-- Item: In-Kind Sponsors & Grants -->
+  <div class="row align-items-center py-4 py-xl-5 my-2">
+
+    <div class="col-md-12">
+      <div class="pe-md-4 pe-xl-0">
+        <h2 class="h1 pb-2 pb-lg-3">Our In-Kind Sponsors</h2>
+        <p class="pb-2 pb-lg-0 mb-4 mb-lg-5">
+          We’re honored to receive generous in-kind support and recent grants that help us launch culturally significant programs in our community, including “Our Cultural Receptacles.” <!-- Summary of grant blurb. :contentReference[oaicite:4]{index=4} -->
+        </p>
+
+        <div class="row row-cols-2">
+          <div class="col">
+            <h3 class="h5 mb-2">In-Kind Sponsors</h3>
+            <ul class="fs-sm mb-0 list-unstyled">
+              {% for s in site.data.in_kind_sponsors.in_kind %}
+                <li class="mb-1">
+                  {% if s.url %}<a href="{{ s.url }}" target="_blank" rel="noopener">{{ s.name }}</a>{% else %}{{ s.name }}{% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="col">
+            <h3 class="h5 mb-2">Recent Grants</h3>
+            <ul class="fs-sm mb-0 list-unstyled">
+              {% for g in site.data.in_kind_sponsors.grants %}
+                <li class="mb-1"><a href="{{ g.url }}" target="_blank" rel="noopener">{{ g.name }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- Logo wall (pulls logos from both donors + in-kind where available) -->
+<section class="container pt-2 pt-sm-0 my-md-2 my-lg-3 my-xl-4 my-xxl-5">
+  <h2 class="h1 text-center">Our Partners &amp; Sponsors</h2>
+  <p class="text-center pb-2 pb-sm-3">Thank you to the brands and individuals who make our work possible.</p>
+
+  <div class="row row-cols-3 row-cols-md-4 g-2 g-md-4">
+
+    {%- comment -%} Annual Partners logos {%- endcomment -%}
+    {% for d in site.data.donors.annual_partners %}
+      {% if d.logo %}
+      <div class="col"><img class="d-block mx-auto" src="{{ d.logo }}" width="220" alt="{{ d.name }}"></div>
+      {% endif %}
+    {% endfor %}
+
+    {%- comment -%} Sponsors logos {%- endcomment -%}
+    {% for d in site.data.donors.sponsors %}
+      {% if d.logo %}
+      <div class="col"><img class="d-block mx-auto" src="{{ d.logo }}" width="220" alt="{{ d.name }}"></div>
+      {% endif %}
+    {% endfor %}
+
+    {%- comment -%} Supporters logos (if any) {%- endcomment -%}
+    {% for d in site.data.donors.supporters %}
+      {% if d.logo %}
+      <div class="col"><img class="d-block mx-auto" src="{{ d.logo }}" width="220" alt="{{ d.name }}"></div>
+      {% endif %}
+    {% endfor %}
+
+    {%- comment -%} In-Kind logos {%- endcomment -%}
+    {% for s in site.data.in_kind_sponsors.in_kind %}
+      {% if s.logo %}
+      <div class="col"><img class="d-block mx-auto" src="{{ s.logo }}" width="220" alt="{{ s.name }}"></div>
+      {% endif %}
+    {% endfor %}
+
+  </div>
+</section>

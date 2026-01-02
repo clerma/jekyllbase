@@ -1,0 +1,24 @@
+in_kind:
+  - name: "DUC IN ALTUM"
+    logo: ""
+    url: ""
+  - name: "CANDACE GREER Fine Art"
+    logo: ""
+    url: ""
+  - name: "McGEES Louisiana Swamp & Airboat Tours"
+    logo: ""
+    url: ""
+  - name: "SOCIAL Southern Table & Bar"
+    logo: ""
+    url: ""
+  - name: "Lafayette Travel"
+    logo: "https://static.wixstatic.com/media/e012fc_0d7aa6f2e7dd4b47b5bb05dbf2d2e40a~mv2.png" # LafayetteTravelLogo.png
+    url: "https://www.lafayettetravel.com"
+  - name: "BJF"
+    logo: "https://static.wixstatic.com/media/e012fc_c0a3f5d9ecfa4cd8b4e6c869c5a4d9e4~mv2.png"  # BJF_logo.png
+    url: ""
+grants:
+  - name: "Ben & Jerry’s Foundation"
+    url: "https://www.benandjerrysfoundation.org"
+  - name: "Lafayette Convention and Visitors Bureau"
+    url: "https://www.lafayettetravel.com"
