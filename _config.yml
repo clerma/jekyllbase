@@ -11,7 +11,7 @@ favicon: /assets/favicon/favicon.ico
 disqus:
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
 google_analytics:
-logo:
+logo: assets/img/DIG-Logo.avif
 locale: en_us
 social:
   name:
