@@ -2,7 +2,7 @@
 timezone: America/Chicago
 baseurl: ""
 url: doitgreener.org
-include: ['_pages', '_data','_vendors']
+include: ['_pages', '_data','_programs']
 name: Do It Greener
 description:
 author:
@@ -79,6 +79,12 @@ defaults:
     path: _pages/index.html
   values:
     permalink:
+- scope:
+      path: "_programs"
+      type: pages
+  values:
+      permalink: "/:title"
+      layout: defautl
 - scope:
     path: "_posts/blog"
     type: posts

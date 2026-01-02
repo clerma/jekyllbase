@@ -3,43 +3,62 @@ title:
 description: >-
 keywords: >-
 image:
-banner:
-  image:
-  video:
-  preheading:
-  title:
-  subtext:
+hero:
+  slides:
+     - "/assets/img/e012fc_78d0dc4c119d428f8aba21e06133ae40~mv2.avif"
+  effect: fade           # swiper effect
+  speed: 800             # transition speed (ms)
+  autoplay_delay: 7000   # ms; omit to disable autoplay
+  pagination: true       # show bullets
+  heading1: "Our"
+  heading2: "Mission"
+  subtext: "Making communities healthier and more sustainable through engagement and technology."
+  button_text: JOIN US
+  button_url: "#"
 layout: default
 permalink: /
 ---
 
+{%- assign cfg = include.config | default: page.hero -%}
+{%- assign slides = cfg.slides | default: site.data.home_hero.slides -%}
+{%- assign effect = cfg.effect | default: "fade" -%}
+{%- assign speed  = cfg.speed  | default: 800 -%}
+{%- assign autoplay_delay = cfg.autoplay_delay -%}
+{%- assign pagination = cfg.pagination | default: true -%}
+{%- assign heading1 = cfg.heading1 | default: site.title -%}
+{%- assign heading2 = cfg.heading2 | default: site.title -%}
+{%- assign subtext = cfg.subtext | default: "" -%}
+{%- assign button_text = cfg.button_text | default: "" -%}
+{%- assign button_url = cfg.button_url | default: "" -%}
 
-<!-- Hero slider -->
 <section class="position-relative min-vh-100 py-5" data-bs-theme="light">
 
-  <!-- Background image slider -->
-  <div class="swiper swiper-scale-effect position-absolute top-0 start-0 w-100 h-100" data-swiper-options='{
-    "effect": "fade",
-    "speed": 800,
-    "autoplay": {
-      "delay": 7000,
-      "disableOnInteraction": false
-    },
+  {%- comment -%} Build Swiper options JSON safely {%- endcomment -%}
+  {%- capture swiper_opts -%}
+  {
+    "effect":"{{ effect }}",
+    "speed": {{ speed }},
+    {%- if autoplay_delay -%}
+    "autoplay":{"delay": {{ autoplay_delay }}, "disableOnInteraction": false},
+    {%- endif -%}
     "pagination": {
       "el": ".swiper-pagination",
-      "clickable": true
+      "clickable": {{ pagination | default: true }}
     }
-  }'>
+  }
+  {%- endcapture -%}
+
+  <!-- Background image slider -->
+  <div class="swiper swiper-scale-effect position-absolute top-0 start-0 w-100 h-100"
+       data-swiper-options='{{ swiper_opts | strip | replace: "
+", "" }}'>
     <div class="swiper-wrapper">
+      {%- for src in slides -%}
       <div class="swiper-slide">
-        <div class="swiper-slide-cover bg-position-top-center" style="background-image: url(assets/img/landing/yoga-studio/hero/01.jpg);"></div>
+        <div class="swiper-slide-cover bg-position-top-center"
+             style="background-image: url('{{ src | relative_url }}');"></div>
       </div>
-      <div class="swiper-slide">
-        <div class="swiper-slide-cover bg-position-top-center" style="background-image: url(assets/img/landing/yoga-studio/hero/02.jpg);"></div>
-      </div>
-      <div class="swiper-slide">
-        <div class="swiper-slide-cover bg-position-top-center" style="background-image: url(assets/img/landing/yoga-studio/hero/03.jpg);"></div>
-      </div>
+      {%- endfor -%}
     </div>
     <div class="swiper-pagination mb-4"></div>
   </div>
@@ -48,394 +67,12 @@ permalink: /
   <div class="container position-relative z-2 py-lg-3 py-xl-5 my-5">
     <div class="row pt-md-3 py-xxl-5 my-5">
       <div class="col py-5 mb-md-4 mb-lg-5">
-        <h1 class="display-1 text-uppercase mb-4">Yoga Studio</h1>
-        <p class="d-block text-body fs-xl pb-2 mb-4 mb-md-5" style="max-width: 500px;">The best yoga and meditation practices, adapted at a high level to the needs of the modern pace of life.</p>
-        <div class="position-relative d-inline-flex align-items-center">
-          <a class="btn btn-icon btn-lg btn-primary rounded-circle stretched-link" href="https://www.youtube.com/watch?v=SZCxKjgReQ4" data-bs-toggle="video" aria-label="Play video">
-            <i class="ai-play-filled"></i>
-          </a>
-          <span class="text-body fs-lg fw-semibold ms-3">Watch Video</span></div>
-      </div>
-    </div>
-  </div>
-</section>
+        <h1 class="display-1 text-uppercase mb-4 text-white">{{ heading1 }} <span class="text-pink">{{ heading2 }}</span></h1>
+        {%- if subtext != "" -%}
+          <p class="d-block fs-xl pb-2 mb-4 mb-md-5 text-white" style="max-width: 500px;">{{ subtext }}</p>
+        {%- endif -%}
 
-
-<!-- Features (Advantages) slider -->
-<section class="pt-5 mt-lg-3 mt-xl-4 mt-xxl-5">
-  <div class="container pt-2 pt-sm-4 pt-lg-5 mt-md-3 mt-lg-0">
-    <div class="row pb-3 mb-3 mb-lg-4">
-      <div class="col-lg-11 d-sm-flex justify-content-between text-center text-sm-start">
-        <h2 class="h1 mb-sm-0 mx-auto me-sm-4" style="max-width: 440px;">Advantages that make us a unique place</h2>
-        <p class="pt-2 mb-0 mx-auto" style="max-width: 420px;">The best yoga and meditation practices, adapted a ta high level to the needs of the modern pace of life.</p>
-      </div>
-    </div>
-  </div>
-  <div class="container-start pe-0">
-    <div class="swiper" data-swiper-options='{
-      "slidesPerView": "auto",
-      "spaceBetween": 24,
-      "loop": true,
-      "navigation": {
-        "prevEl": "#prev-feature",
-        "nextEl": "#next-feature"
-      }
-    }'>
-      <div class="swiper-wrapper">
-
-        <!-- Item -->
-        <div class="swiper-slide w-auto h-auto">
-          <div class="card border-0 bg-secondary card-hover h-100 py-4" style="max-width: 306px;">
-            <div class="opacity-0 position-absolute top-0 start-0 w-100 h-100 bg-size-cover bg-position-center rounded-5" style="background-image: url(assets/img/landing/yoga-studio/features/spa-area.jpg);"></div>
-            <div class="card-body text-center">
-              <i class="ai-spa h1 fw-normal text-primary d-block mb-4"></i>
-              <h3>Spa area</h3>
-              <p class="card-text">Orci purus, in tellus sit bibendum scelerisque adipiscing venenatis.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Item -->
-        <div class="swiper-slide w-auto h-auto">
-          <div class="card border-0 bg-secondary card-hover h-100 py-4" style="max-width: 306px;">
-            <div class="opacity-0 position-absolute top-0 start-0 w-100 h-100 bg-size-cover bg-position-center rounded-5" style="background-image: url(assets/img/landing/yoga-studio/features/changing-room.jpg);"></div>
-            <div class="card-body text-center">
-              <i class="ai-towel h1 fw-normal text-primary d-block mb-4"></i>
-              <h3>Changing room</h3>
-              <p class="card-text">Non est nullam amet netus ut vitae, penatibus lacus a ut sed molestie lectus lobortis.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Item -->
-        <div class="swiper-slide w-auto h-auto">
-          <div class="card border-0 bg-secondary card-hover h-100 py-4" style="max-width: 306px;">
-            <div class="opacity-0 position-absolute top-0 start-0 w-100 h-100 bg-size-cover bg-position-center rounded-5" style="background-image: url(assets/img/landing/yoga-studio/features/free-lessons.jpg);"></div>
-            <div class="card-body text-center">
-              <i class="ai-flower h1 fw-normal text-primary d-block mb-4"></i>
-              <h3>Free lessons</h3>
-              <p class="card-text">Nisi vestibulum quam amet, egestas aliquam cursus mauris dignissim tellus.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Item -->
-        <div class="swiper-slide w-auto h-auto">
-          <div class="card border-0 bg-secondary card-hover h-100 py-4" style="max-width: 306px;">
-            <div class="opacity-0 position-absolute top-0 start-0 w-100 h-100 bg-size-cover bg-position-center rounded-5" style="background-image: url(assets/img/landing/yoga-studio/features/lounge-cafe.jpg);"></div>
-            <div class="card-body text-center">
-              <i class="ai-cafe h1 fw-normal text-primary d-block mb-4"></i>
-              <h3>Lounge cafe</h3>
-              <p class="card-text">Amet diam imperdiet nisi non eu, pharetra lorem amet, ac ut aliquam diam sed cras.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Item -->
-        <div class="swiper-slide w-auto h-auto">
-          <div class="card border-0 bg-secondary card-hover h-100 py-4" style="max-width: 306px;">
-            <div class="opacity-0 position-absolute top-0 start-0 w-100 h-100 bg-size-cover bg-position-center rounded-5" style="background-image: url(assets/img/landing/yoga-studio/features/bright-halls.jpg);"></div>
-            <div class="card-body text-center">
-              <i class="ai-sofa h1 fw-normal text-primary d-block mb-4"></i>
-              <h3>Bright halls</h3>
-              <p class="card-text">Non est nullam amet netus ut vitae, penatibus lacus a ut sed molestie lectus lobortis.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Item -->
-        <div class="swiper-slide w-auto h-auto">
-          <div class="card border-0 bg-secondary card-hover h-100 py-4" style="max-width: 306px;">
-            <div class="opacity-0 position-absolute top-0 start-0 w-100 h-100 bg-size-cover bg-position-center rounded-5" style="background-image: url(assets/img/landing/yoga-studio/features/free-rugs.jpg);"></div>
-            <div class="card-body text-center">
-              <i class="ai-rug h1 fw-normal text-primary d-block mb-4"></i>
-              <h3>Free rugs</h3>
-              <p class="card-text">Amet diam imperdiet nisi non eu, pharetra lorem amet, ac ut aliquam diam sed cras.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Item -->
-        <div class="swiper-slide w-auto h-auto">
-          <div class="card border-0 bg-primary card-hover h-100 py-4" style="max-width: 306px;"><img class="position-absolute top-0 start-0" src="assets/img/landing/yoga-studio/features/flower.svg" width="306" alt="Decor">
-            <div class="card-body position-relative z-2 text-center">
-              <h3 class="text-white">Get started a free trial</h3>
-              <p class="text-white fs-sm">The best yoga practices, adapted at a high level to the needs of the modern pace of life.</p><a class="btn btn-light text-primary" href="#">Try a free lesson</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Slider controls (Prev / Next buttons) -->
-    <div class="container d-flex justify-content-center justify-content-sm-end pt-3 mt-3 mt-lg-4">
-      <button class="btn btn-icon btn-sm btn-outline-primary rounded-circle me-3" type="button" id="prev-feature" aria-label="Prev">
-        <i class="ai-arrow-left"></i>
-      </button>
-      <button class="btn btn-icon btn-sm btn-outline-primary rounded-circle" type="button" id="next-feature" aria-label="Next">
-        <i class="ai-arrow-right"></i>
-      </button>
-    </div>
-  </div>
-</section>
-
-
-<!-- Classes (Tabs) -->
-<section class="container pt-5 mt-lg-3 mt-xl-4 mt-xxl-5">
-  <h2 class="h1 text-center pt-2 pt-sm-3">Our classes</h2>
-  <p class="text-center pb-3 mb-3 mb-lg-4">Whether you are a beginner or an experienced yoga</p>
-
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs flex-nowrap overflow-auto text-nowrap w-100 mx-auto pb-3 mb-3 mb-lg-4" role="tablist" style="max-width: 892px;">
-    <li class="nav-item mb-0">
-      <a class="nav-link active" href="#beginners" data-bs-toggle="tab" role="tab">Beginners</a>
-    </li>
-    <li class="nav-item mb-0">
-      <a class="nav-link" href="#stretching" data-bs-toggle="tab" role="tab">Stretching</a>
-    </li>
-    <li class="nav-item mb-0">
-      <a class="nav-link" href="#fly-yoga" data-bs-toggle="tab" role="tab">Fly-yoga</a>
-    </li>
-    <li class="nav-item mb-0">
-      <a class="nav-link" href="#for-pregnant" data-bs-toggle="tab" role="tab">For pregnant</a>
-    </li>
-    <li class="nav-item mb-0">
-      <a class="nav-link" href="#healthy-back" data-bs-toggle="tab" role="tab">Healthy back</a>
-    </li>
-    <li class="nav-item mb-0">
-      <a class="nav-link" href="#relax-yoga" data-bs-toggle="tab" role="tab">Relax yoga</a>
-    </li>
-  </ul>
-
-
-  <!-- Tab content -->
-  <div class="tab-content">
-
-    <!-- Beginers -->
-    <div class="tab-pane fade show active" id="beginners" role="tabpanel">
-      <div class="row align-items-lg-center">
-        <div class="col-md-6 pb-4 pb-md-0 mb-2 mb-md-0">
-          <img class="rounded-5" src="assets/img/landing/yoga-studio/classes/beginners.jpg" alt="Beginners">
-        </div>
-        <div class="col-md-6 col-lg-5 col-xl-4 offset-lg-1">
-          <div class="ps-md-4 ps-lg-0">
-            <h2 class="mb-xl-4">Yoga for beginners</h2>
-            <p class="pb-3 mb-3 mb-xl-4">Purus magna lectus feugiat arcu tellus vitae urna neque, eu velit in vulputate sodales ut tellus amet lorem sit consectetur quisque justo laoreet proin.</p>
-            <div class="row row-cols-2 g-4 pb-2 pb-xl-0 mb-4 mb-xl-5">
-              <div class="col">
-                <i class="ai-spa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Spa area</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-              <div class="col">
-                <i class="ai-towel d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Changing rooms</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-              <div class="col">
-                <i class="ai-cafe d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Lounge cafe</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-              <div class="col">
-                <i class="ai-sofa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Bright halls</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-            </div>
-            <a class="btn btn-primary w-100 w-sm-auto" href="#">Try a free lesson</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Stretching -->
-    <div class="tab-pane fade" id="stretching" role="tabpanel">
-      <div class="row align-items-lg-center">
-        <div class="col-md-6 pb-4 pb-md-0 mb-2 mb-md-0">
-          <img class="rounded-5" src="assets/img/landing/yoga-studio/classes/stretching.jpg" alt="Stretching">
-        </div>
-        <div class="col-md-6 col-lg-5 col-xl-4 offset-lg-1">
-          <div class="ps-md-4 ps-lg-0">
-            <h2 class="mb-xl-4">Stretching</h2>
-            <p class="pb-3 mb-3 mb-xl-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id lectus nec nunc bibendum facilisis pellentesque ut eros. Praesent bibendum sed mi aliquet tempus.</p>
-            <div class="row row-cols-2 g-4 pb-2 pb-xl-0 mb-4 mb-xl-5">
-              <div class="col">
-                <i class="ai-sofa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Bright halls</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-              <div class="col">
-                <i class="ai-spa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Spa area</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-              <div class="col">
-                <i class="ai-cafe d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Lounge cafe</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-              <div class="col">
-                <i class="ai-towel d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Changing rooms</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-            </div>
-            <a class="btn btn-primary w-100 w-sm-auto" href="#">Try a free lesson</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Fly-yoga -->
-    <div class="tab-pane fade" id="fly-yoga" role="tabpanel">
-      <div class="row align-items-lg-center">
-        <div class="col-md-6 pb-4 pb-md-0 mb-2 mb-md-0">
-          <img class="rounded-5" src="assets/img/landing/yoga-studio/classes/fly-yoga.jpg" alt="Fly-yoga">
-        </div>
-        <div class="col-md-6 col-lg-5 col-xl-4 offset-lg-1">
-          <div class="ps-md-4 ps-lg-0">
-            <h2 class="mb-xl-4">Fly-yoga</h2>
-            <p class="pb-3 mb-3 mb-xl-4">Varius purus dui nunc faucibus mauris iaculis tortor enim cursus quisque eu, vel amet massa suscipit cursus sit mattis quis magnis dignissim dui fames tortor amet quis.</p>
-            <div class="row row-cols-2 g-4 pb-2 pb-xl-0 mb-4 mb-xl-5">
-              <div class="col">
-                <i class="ai-towel d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Changing rooms</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-              <div class="col">
-                <i class="ai-rug d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Free rugs</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-              <div class="col">
-                <i class="ai-spa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Spa area</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-              <div class="col">
-                <i class="ai-sofa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Bright halls</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-            </div>
-            <a class="btn btn-primary w-100 w-sm-auto" href="#">Try a free lesson</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- For pregnant -->
-    <div class="tab-pane fade" id="for-pregnant" role="tabpanel">
-      <div class="row align-items-lg-center">
-        <div class="col-md-6 pb-4 pb-md-0 mb-2 mb-md-0">
-          <img class="rounded-5" src="assets/img/landing/yoga-studio/classes/for-pregnant.jpg" alt="For pregnant">
-        </div>
-        <div class="col-md-6 col-lg-5 col-xl-4 offset-lg-1">
-          <div class="ps-md-4 ps-lg-0">
-            <h2 class="mb-xl-4">For pregnant</h2>
-            <p class="pb-3 mb-3 mb-xl-4">At duis est ante tortor, dictum dictumst nisl erat. Tellus erat pharetra eget vestibulum. Netus eu sit cursus et vehicula porttitor nulla turpis a. In volutpat at orci.</p>
-            <div class="row row-cols-2 g-4 pb-2 pb-xl-0 mb-4 mb-xl-5">
-              <div class="col">
-                <i class="ai-sofa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Bright halls</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-              <div class="col">
-                <i class="ai-spa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Spa area</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-              <div class="col">
-                <i class="ai-cafe d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Lounge cafe</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-              <div class="col">
-                <i class="ai-towel d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Changing rooms</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-            </div>
-            <a class="btn btn-primary w-100 w-sm-auto" href="#">Try a free lesson</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Healthy back -->
-    <div class="tab-pane fade" id="healthy-back" role="tabpanel">
-      <div class="row align-items-lg-center">
-        <div class="col-md-6 pb-4 pb-md-0 mb-2 mb-md-0">
-          <img class="rounded-5" src="assets/img/landing/yoga-studio/classes/healthy-back.jpg" alt="Healthy back">
-        </div>
-        <div class="col-md-6 col-lg-5 col-xl-4 offset-lg-1">
-          <div class="ps-md-4 ps-lg-0">
-            <h2 class="mb-xl-4">Healthy back</h2>
-            <p class="pb-3 mb-3 mb-xl-4">Facilisi tempus pharetra, egestas dolor. Nulla lorem interdum cursus habitasse. Morbi aliquam, mauris, varius nulla tortor ut nullam. Est eu eu eget fames leo nisl est.</p>
-            <div class="row row-cols-2 g-4 pb-2 pb-xl-0 mb-4 mb-xl-5">
-              <div class="col">
-                <i class="ai-cafe d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Lounge cafe</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-              <div class="col">
-                <i class="ai-sofa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Bright halls</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-              <div class="col">
-                <i class="ai-towel d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Changing rooms</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-              <div class="col">
-                <i class="ai-spa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Spa area</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-            </div>
-            <a class="btn btn-primary w-100 w-sm-auto" href="#">Try a free lesson</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Relax yoga -->
-    <div class="tab-pane fade" id="relax-yoga" role="tabpanel">
-      <div class="row align-items-lg-center">
-        <div class="col-md-6 pb-4 pb-md-0 mb-2 mb-md-0">
-          <img class="rounded-5" src="assets/img/landing/yoga-studio/classes/relax-yoga.jpg" alt="Relax yoga">
-        </div>
-        <div class="col-md-6 col-lg-5 col-xl-4 offset-lg-1">
-          <div class="ps-md-4 ps-lg-0">
-            <h2 class="mb-xl-4">Relax yoga</h2>
-            <p class="pb-3 mb-3 mb-xl-4">Aliquam risus, leo mattis commodo id pretium. In sapien, lacus, cursus id vulputate. Pellentesque quis et posuere maecenas sed aenean quisque ut. Pellentesque sed at.</p>
-            <div class="row row-cols-2 g-4 pb-2 pb-xl-0 mb-4 mb-xl-5">
-              <div class="col">
-                <i class="ai-towel d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Changing rooms</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-              <div class="col">
-                <i class="ai-cafe d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Lounge cafe</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-              <div class="col">
-                <i class="ai-sofa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Bright halls</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-              <div class="col">
-                <i class="ai-spa d-block h2 text-primary fw-normal pb-2 mb-1"></i>
-                <h3 class="h6 mb-2">Spa area</h3>
-                <p class="fs-sm mb-0">Neque, blandit consectetur viverra placerat ante.</p>
-              </div>
-            </div>
-            <a class="btn btn-primary w-100 w-sm-auto" href="#">Try a free lesson</a>
-          </div>
-        </div>
+       <a href="{{ button_url }}" class="btn btn-lg btn-primary">{{ button_text }}</a>
       </div>
     </div>
   </div>
@@ -444,63 +81,18 @@ permalink: /
 
 <!-- Trainers (Grid) -->
 <section class="container pb-2 pb-sm-3 pt-5 mt-lg-3 mt-xl-4 mt-xxl-5">
-  <h2 class="h1 text-center pt-2 pt-sm-4 pt-lg-5 pb-2 mb-3 mb-lg-4 mt-md-3 mt-lg-0">We employ the best trainers</h2>
+  <h2 class="h1 text-center pt-2 pt-sm-4 pt-lg-5 pb-2 mb-3 mb-lg-4 mt-md-3 mt-lg-0">Our Board</h2>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    {% for item in site.data.board %}
     <div class="col text-center pt-2">
       <a class="card-hover card-lifted d-inline-block text-decoration-none" href="#">
-        <img class="card-lifted d-block rounded-5 mb-3" src="assets/img/landing/yoga-studio/trainers/01.jpg" width="340" alt="Alisa Black">
-        <h3 class="h5 mb-1">Alisa Black</h3>
-        <p class="mb-0 text-body-secondary">Fly-yoga trainer</p>
+        <img class="card-lifted d-block rounded-5 mb-3" src="{{item.image}}" width="340" alt="{{item.name}}">
+        <h3 class="h5 mb-1">{{item.name}}</h3>
+        <p class="mb-0 text-body-secondary">{{item.title}}</p>
       </a>
     </div>
-    <div class="col text-center pt-2">
-      <a class="card-hover card-lifted d-inline-block text-decoration-none" href="#"><img class="card-lifted d-block rounded-5 mb-3" src="assets/img/landing/yoga-studio/trainers/02.jpg" width="340" alt="Michelle Yang">
-        <h3 class="h5 mb-1">Michelle Yang</h3>
-        <p class="mb-0 text-body-secondary">Fly-yoga and relax trainer</p>
-      </a>
-    </div>
-    <div class="col text-center pt-2">
-      <a class="card-hover card-lifted d-inline-block text-decoration-none" href="#">
-        <img class="card-lifted d-block rounded-5 mb-3" src="assets/img/landing/yoga-studio/trainers/03.jpg" width="340" alt="Robert Fox">
-        <h3 class="h5 mb-1">Robert Fox</h3>
-        <p class="mb-0 text-body-secondary">Stretching trainer</p>
-      </a>
-    </div>
-    <div class="col text-center pt-2">
-      <a class="card-hover card-lifted d-inline-block text-decoration-none" href="#">
-        <img class="card-lifted d-block rounded-5 mb-3" src="assets/img/landing/yoga-studio/trainers/04.jpg" width="340" alt="Jane Cooper">
-        <h3 class="h5 mb-1">Jane Cooper</h3>
-        <p class="mb-0 text-body-secondary">Fly-yoga trainer</p>
-      </a>
-    </div>
-    <div class="col text-center pt-2">
-      <a class="card-hover card-lifted d-inline-block text-decoration-none" href="#">
-        <img class="card-lifted d-block rounded-5 mb-3" src="assets/img/landing/yoga-studio/trainers/05.jpg" width="340" alt="Cody Fisher">
-        <h3 class="h5 mb-1">Cody Fisher</h3>
-        <p class="mb-0 text-body-secondary">Fly-yoga and relax trainer</p>
-      </a>
-    </div>
-    <div class="col text-center pt-2">
-      <a class="card-hover card-lifted d-inline-block text-decoration-none" href="#">
-        <img class="card-lifted d-block rounded-5 mb-3" src="assets/img/landing/yoga-studio/trainers/06.jpg" width="340" alt="Jenny Wilson">
-        <h3 class="h5 mb-1">Jenny Wilson</h3>
-        <p class="mb-0 text-body-secondary">Women's practices</p>
-      </a>
-    </div>
-    <div class="col text-center pt-2">
-      <a class="card-hover card-lifted d-inline-block text-decoration-none" href="#">
-        <img class="card-lifted d-block rounded-5 mb-3" src="assets/img/landing/yoga-studio/trainers/07.jpg" width="340" alt="Annette Black">
-        <h3 class="h5 mb-1">Annette Black</h3>
-        <p class="mb-0 text-body-secondary">Fly-yoga trainer</p>
-      </a>
-    </div>
-    <div class="col text-center pt-2">
-      <a class="card-hover card-lifted d-inline-block text-decoration-none" href="#">
-        <img class="card-lifted d-block rounded-5 mb-3" src="assets/img/landing/yoga-studio/trainers/08.jpg" width="340" alt="Ralph Edwards">
-        <h3 class="h5 mb-1">Ralph Edwards</h3>
-        <p class="mb-0 text-body-secondary">Stretching trainer, healthy back</p>
-      </a>
-    </div>
+    {% endfor %}
+
   </div>
 </section>
 

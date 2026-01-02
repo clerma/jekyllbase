@@ -8562,6 +8562,10 @@ textarea.form-control-lg {
   --ar-text-opacity: 1;
   color: #fff !important;
 }
+.text-pink {
+  --ar-text-opacity: 1;
+  color: #f28e84 !important;
+}
 
 .text-body {
   --ar-text-opacity: 1;
